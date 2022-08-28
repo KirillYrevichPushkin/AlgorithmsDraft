@@ -16,12 +16,13 @@ public class StackXTest {
     @BeforeEach
     public void init(){
         stackX = new StackX(5);
+
     }
 
 //    @ParameterizedTest
-//    @CsvSource({5,1 }, {9, 2})
+//    @ValueSource(ints ={ 6, 1, 2, 5, 3})
 //    public void testAdd(){
-//
+//            stackX.push();
 //        Assertions.
 //    }
 
