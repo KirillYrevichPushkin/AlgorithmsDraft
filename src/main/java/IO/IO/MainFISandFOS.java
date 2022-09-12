@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class MainFISandFOS {
     public static void main(String[] args) {
-        File file = new File("src/main/java/IO/IO/temp.txt");
+        File file = new File("src/main/java/IO/IO/temp1.txt");
         System.out.println(file.isFile());
         System.out.println(file.getFreeSpace()/1024/1024);
         System.out.println(file.getTotalSpace()/1024/1024);
@@ -15,7 +15,7 @@ public class MainFISandFOS {
 
 
         Path path = file.toPath();
-        Path path1 = Paths.get("src/main/java/IO/IO/temp.txt");
+        Path path1 = Paths.get("src/main/java/IO/IO/temp1.txt");
         Path path2 = Paths.get("src/main/java/IO/IO/temp2.txt");
 
         File file3 = new File("src/main/java/Graph");
@@ -42,26 +42,23 @@ public class MainFISandFOS {
 
         System.out.println("fis++++++++++++++");
         FileOutputStream fos = null;
+
+        long t1 = System.currentTimeMillis();
+
         try(FileInputStream fis = new FileInputStream(path1.toFile())) {
             fos = new FileOutputStream(path2.toFile());
             byte [] buff = new byte[5];
-
+            
             //чтение побайтово
             int readByte;
-            StringBuilder sb = new StringBuilder();
-//            while ( (readByte = fis.read())!=-1 ){
-//                sb.append(String.valueOf((char) readByte));
-//            }
-//            System.out.println(sb.toString());
-
-
+  //          StringBuilder sb = new StringBuilder();
 
             //чтение буфером
             while((readByte = fis.read(buff))!=-1){
 
-                for ( byte b:buff ) {
-                    sb.append(String.valueOf((char)b));
-                }
+//                for ( byte b:buff ) {
+//                    sb.append(String.valueOf((char)b));
+//                }
                 //запись в файл буфером
                 //если перезаписан не весь буфер - корректируем запись только последних добавленных байтов
                 if(readByte==5){
@@ -72,7 +69,7 @@ public class MainFISandFOS {
 
             }
             fos.flush();
-            System.out.println(sb.toString());
+//            System.out.println(sb.toString());
 
 
         } catch (FileNotFoundException e) {
@@ -86,7 +83,7 @@ public class MainFISandFOS {
                 e.printStackTrace();
             }
         }
-
+        System.out.println(System.currentTimeMillis()-t1);
     }
 
 }
