@@ -46,12 +46,18 @@ public class EchoServer {
     private static void answerWithEcho(ByteBuffer buffer, SelectionKey key) throws IOException {
         SocketChannel client = (SocketChannel) key.channel();
         client.read(buffer);
+
         if (new String(buffer.array()).trim().equals(POISON_PILL)) {
             client.close();
             System.out.println("Not accepting client messages anymore");
         } else {
             buffer.flip();
-            client.write(buffer);
+
+            while (buffer.hasRemaining()){
+                client.write(buffer);
+            }
+
+        //    client.write(buffer);
             buffer.clear();
         }
     }
@@ -59,7 +65,9 @@ public class EchoServer {
     private static void register(Selector selector, ServerSocketChannel serverSocket) throws IOException {
         SocketChannel client = serverSocket.accept();
         client.configureBlocking(false);
-        client.register(selector, SelectionKey.OP_READ);
+        client.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE); // "|" определяет поведение для более чем одного события
+      //  client.register(selector, SelectionKey.OP_WRITE);
+
         System.out.println("Client connect");
         System.out.println("Remote address" + client.getRemoteAddress().toString());
     }
