@@ -1,7 +1,12 @@
 package WTG.draft;
 
-import java.text.DecimalFormat;
 
+
+
+/**
+ * Класс для расчета сектора по радиусу в котором находится заданная точка
+ *
+ * */
 public class Sector {
 
     private static final int [] longitudeArray = {111321,111303,111254,111170,111052,110901,110716,110497,110245,109960,
@@ -29,6 +34,14 @@ public class Sector {
     public Sector() {
     }
 
+
+    /**Возвращает двумерный массив в котором:
+    sector[0][0] - долгота левой верхней точки
+    sector[0][1]- широта левой верхней точки
+    sector[1][0]- долгота правой нижней точки
+    sector[1][1]- широта правой нижней точки
+     PS возвращаем квадрат, который описывает окружность с заданный радиусом
+     */
     public static float[][] getSectorByRadius(float centerLongitude, float centerLatitude, int radius ){
         float [][] sector = new float[2][2];
         int longitudeLength = longitudeArray[(int)centerLatitude];
