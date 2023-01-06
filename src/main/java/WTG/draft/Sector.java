@@ -1,8 +1,5 @@
 package WTG.draft;
 
-
-
-
 /**
  * Класс для расчета сектора по радиусу в котором находится заданная точка
  *
@@ -30,11 +27,6 @@ public class Sector {
                                     111662,111668,111674,111679,111683,111687,111690,111693,111694,111695,
                                     111696};
 
-
-    public Sector() {
-    }
-
-
     /**Возвращает двумерный массив в котором:
     sector[0][0] - долгота левой верхней точки
     sector[0][1]- широта левой верхней точки
@@ -44,12 +36,6 @@ public class Sector {
      */
     public static float[][] getSectorByRadius(float centerLongitude, float centerLatitude, int radius ){
         float [][] sector = new float[2][2];
-        int longitudeLength = longitudeArray[(int)centerLatitude];
-        int latitudeLength = latitudeArray[(int)centerLatitude];
-
-        System.out.println("longitudeLength =" + longitudeLength);
-        System.out.println("latitudeLength =" + latitudeLength);
-
 
         sector[0][0] = centerLongitude - ((float) radius)/longitudeArray[(int)centerLatitude];
         sector[0][1] = centerLatitude + ((float) radius)/latitudeArray[(int)centerLatitude];
