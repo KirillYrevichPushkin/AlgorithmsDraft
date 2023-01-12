@@ -30,9 +30,9 @@ public class MainUpdateDB {
 
         double[]coordinate = new double[2];
         try {
-            ResultSet rs = connection.prepareStatement("SELECT * from test.locations where title != '' and id > 1020").executeQuery();
+            ResultSet rs = connection.prepareStatement("SELECT * from test.locations where title != '' and id > 1439").executeQuery();
         //while (rs.next()){
-            for(int i =0; i < 400 && rs.next(); i++){
+            for(int i =0; i < 100 && rs.next(); i++){
 
             System.out.println("id = "+ rs.getString("id") + "  title " + rs.getString("title") + " \t address " + rs.getString("address") + " \t link =" + rs.getString("link_site"));
 
@@ -95,7 +95,7 @@ public class MainUpdateDB {
             coordinates = coordinatelast[0].split(",");
 
             coordinateList = new ArrayList<>();
-            coordinateList =  Arrays.stream((response.body().toString().substring(response.body().toString().indexOf("coordinate") +14, response.body().toString().lastIndexOf("]},")))
+            coordinateList =  Arrays.stream((response.body().toString().substring(response.body().toString().indexOf("coordinate") +14, response.body().toString().lastIndexOf("]},", response.body().toString().indexOf("coordinate") +14 + 21)))
                             .split(","))
                     .map( s -> {
                         return Double.parseDouble(s);
