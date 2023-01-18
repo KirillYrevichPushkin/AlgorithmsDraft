@@ -12,7 +12,8 @@ public class MainJsoup {
     public static void main(String[] args) throws IOException {
 
         Document doc = Jsoup.connect("https://restaurantguru.ru/Zelenyi-Kot-Krasnodar")
-                .userAgent("Chrome/4.0.249.0 Safari/532.5")
+                //.userAgent("Chrome/4.0.249.0 Safari/532.5")
+                .userAgent("Mozilla")
                 .referrer("https://www.google.com")
                 .get();
 
@@ -24,6 +25,15 @@ public class MainJsoup {
 
         Elements workTime = doc.select(".short_info > .days");
         System.out.println("Время работы " + workTime.text()); //время работы ресторана
+
+        Elements description = doc.select(".description > div > p");
+        System.out.println("description full " + description.text()); //описание ресторана
+
+        Elements description1 = doc.select(".description > div > p");
+        System.out.println("description " + description.get(0).text()); //описание ресторана
+
+        Elements description2 = doc.select(".description > div > p");
+        System.out.println("description 2 " + description.get(1).text()); //описание ресторана
 
         String[] timeString = workTime.text().split(" - ");
         System.out.println("t1 = " + timeString[0] + " t2 " + timeString[1]);

@@ -30,9 +30,9 @@ public class MainUpdateDB {
 
         double[]coordinate = new double[2];
         try {
-            ResultSet rs = connection.prepareStatement("SELECT * from test.locations where title != '' and id > 1439").executeQuery();
+            ResultSet rs = connection.prepareStatement("SELECT * from test.locations where title != '' and id > 1897").executeQuery();
         //while (rs.next()){
-            for(int i =0; i < 100 && rs.next(); i++){
+            for(int i =0; i < 50 && rs.next(); i++){
 
             System.out.println("id = "+ rs.getString("id") + "  title " + rs.getString("title") + " \t address " + rs.getString("address") + " \t link =" + rs.getString("link_site"));
 
