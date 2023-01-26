@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * */
 public class ScriptMoving {
-    public static void main(String[] args) {
+       public static void main(String[] args) {
         //подключение к локальной БД
         DBManager dbManagerLocal = new DBManager("jdbc:postgresql://localhost:5432/WTG?currentSchema=test", "postgres","1917");
         Connection connectionLocal;
