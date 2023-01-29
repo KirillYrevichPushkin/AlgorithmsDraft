@@ -45,7 +45,7 @@ public class MainTwoSum {
     }
 
     public static int[] twoSum2(int[] nums, int target) {
-        Map<Integer,Integer> mapNums = new HashMap<>();
+        Map<Integer,Integer> mapNums = new HashMap<>(100);
 
         for (int i = 0; i < nums.length; i++) {
             if(mapNums.containsKey(target-nums[i])){
