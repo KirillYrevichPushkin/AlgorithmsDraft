@@ -85,6 +85,7 @@ public class MainStringTemp {
 
         long l3 = System.currentTimeMillis();
         System.out.println("with regex");
+
         Pattern pattern = Pattern.compile("(\\\"coordinates\\\")([:][\\[])([0-9.,]*)([\\]][\\}])");
         Matcher matcher = pattern.matcher(str1);
         System.out.println(matcher.find());
