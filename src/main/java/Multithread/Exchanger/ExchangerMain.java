@@ -8,11 +8,7 @@ public class ExchangerMain {
         Exchanger exchanger = new Exchanger();
         new Thread( new MakeObj(exchanger)).start();
         new Thread(new UseObj(exchanger)).start();
-
-
     }
-
-
 }
 
 class MakeObj implements Runnable{
@@ -32,17 +28,13 @@ class MakeObj implements Runnable{
             for (int j = 0; j < 5; j++) {
                 str += (char)ch++;
             }
-
             try {
                 //обмен данными
                 str = ex.exchange(str);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
-
-
     }
 }
 
