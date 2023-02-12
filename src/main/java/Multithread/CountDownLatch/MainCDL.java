@@ -11,7 +11,9 @@ public class MainCDL {
 
 
         try {
+            //ожидание
             countDownLatch.await();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
