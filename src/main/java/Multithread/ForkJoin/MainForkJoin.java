@@ -7,7 +7,8 @@ import java.util.concurrent.RecursiveAction;
 public class MainForkJoin {
     public static void main(String[] args) {
 
-        ForkJoinPool fjp = new ForkJoinPool(2);
+        ForkJoinPool fjp = new ForkJoinPool();
+       // ForkJoinPool fjp = ForkJoinPool.commonPool();
 
         double [] nums = new double[400000000];
         long t1 = System.currentTimeMillis();
@@ -35,7 +36,8 @@ public class MainForkJoin {
         SqrtTransform task = new SqrtTransform(nums, 0, nums.length);
 
         long t3 = System.currentTimeMillis();
-        fjp.invoke(task);
+        //fjp.invoke(task);
+        task.invoke();
         long t4 = System.currentTimeMillis()-t3;
         System.out.println(" time update = " + t4);
 
@@ -43,6 +45,7 @@ public class MainForkJoin {
         for (int i = 0; i < 10; i++) {
             System.out.format("%.4f", nums[i]);
         }
+        fjp.shutdown();
         System.out.println("\n");
 
     }
@@ -51,7 +54,7 @@ public class MainForkJoin {
 }
 
 class SqrtTransform extends RecursiveAction {
-    final int seqThreshold = 1000;
+    final int seqThreshold = 100000;
 
     double[] data;
 
