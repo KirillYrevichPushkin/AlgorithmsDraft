@@ -12,6 +12,10 @@ public class Temp2 extends Temp{
         this.name = name;
     }
 
+    public int method1(int a, int b){
+        return 0;
+    }
+
 
     @Override
     public String toString() {
