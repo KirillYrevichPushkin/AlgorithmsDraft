@@ -16,11 +16,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class MainUpdateDB {
     public static void main(String[] args) {
-        DBManager dbManager = new DBManager("jdbc:postgresql://localhost:5432/WTG?currentSchema=test", "postgres","1917");
+        DBManager dbManager = new DBManager("jdbc:postgresql://95.163.237.3:5432/wtg_db?currentSchema=public", "wtg","wtg");
         Connection connection;
         PreparedStatement preparedStatement;
 
@@ -30,9 +32,9 @@ public class MainUpdateDB {
 
         double[]coordinate = new double[2];
         try {
-            ResultSet rs = connection.prepareStatement("SELECT * from test.locations where title != '' and id > 1897").executeQuery();
+            ResultSet rs = connection.prepareStatement("select * from locations l where l.latitude isnull ").executeQuery();
         //while (rs.next()){
-            for(int i =0; i < 50 && rs.next(); i++){
+            for(int i =0; i < 80 && rs.next(); i++){
 
             System.out.println("id = "+ rs.getString("id") + "  title " + rs.getString("title") + " \t address " + rs.getString("address") + " \t link =" + rs.getString("link_site"));
 
@@ -45,7 +47,7 @@ public class MainUpdateDB {
                 coordinate = getCoordinate(rs.getString("address"));
             System.out.println("long = " + coordinate[0] + "  lat = " + coordinate[1]);
 
-            preparedStatement = connection.prepareStatement("UPDATE test.locations SET longitude = ?, latitude = ? where id = ?;");
+            preparedStatement = connection.prepareStatement("UPDATE locations SET longitude = ?, latitude = ? where id = ?;");
             preparedStatement.setInt(3, rs.getInt("id"));
             preparedStatement.setDouble(1, coordinate[0]);
             preparedStatement.setDouble(2,coordinate[1]);
@@ -95,11 +97,27 @@ public class MainUpdateDB {
             coordinates = coordinatelast[0].split(",");
 
             coordinateList = new ArrayList<>();
-            coordinateList =  Arrays.stream((response.body().toString().substring(response.body().toString().indexOf("coordinate") +14, response.body().toString().lastIndexOf("]},", response.body().toString().indexOf("coordinate") +14 + 21)))
-                            .split(","))
-                    .map( s -> {
-                        return Double.parseDouble(s);
-                    }).collect(Collectors.toList());
+//            coordinateList =  Arrays.stream((response.body().toString().substring(response.body().toString().indexOf("coordinate") +14, response.body().toString().lastIndexOf("]},", response.body().toString().indexOf("coordinate") +14 + 21)))
+//                            .split(","))
+//                    .map( s -> {
+//                        return Double.parseDouble(s);
+//                    }).collect(Collectors.toList());
+
+
+            Pattern p1 = Pattern.compile("(\\\"coordinates\\\")([:][\\[])([0-9.,]*)([\\]][\\}])");
+            Matcher m1 = p1.matcher(response.body().toString());
+            m1.find();
+            String strCoordinate = m1.group();
+
+            Pattern p2 = Pattern.compile("[0-9.]+");
+            Matcher m2 = p2.matcher(strCoordinate);
+            m2.find();
+            coordinateList.add(Double.valueOf(m2.group()));
+
+            m2.find();
+            coordinateList.add(Double.valueOf(m2.group()));
+
+            System.out.println(coordinateList.toString());
 
 
         } catch (URISyntaxException e) {
@@ -115,6 +133,12 @@ public class MainUpdateDB {
         coord[0] = coordinateList.get(0);
         coord[1] = coordinateList.get(1);
         //[0] - longitude;  [1] - latitude
+
+
+
+
+        //return coordinateList;
+
         return coord;
     }
 
