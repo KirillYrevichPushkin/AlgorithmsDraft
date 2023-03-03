@@ -18,7 +18,7 @@ public class MainDISandDOS {
 
             //EOFException - т.к. для чтения из файла это не самый хороший вариант использовать этот класс
          //   System.out.println(dis.readUTF());
-
+            
             String s = dis.readUTF();
             while (s!=null) {
                 System.out.println("s " + s);

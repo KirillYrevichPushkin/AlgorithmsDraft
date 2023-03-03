@@ -22,5 +22,13 @@ class MergeSortApp
         arr.display(); // Вывод содержимого массива
         arr.mergeSort(); // Сортировка слиянием
         arr.display(); // Повторный вывод
+
+
+        int [] arrTemple = new int[]{87, 54, 96, 54, 49, 11, 21, 26, 45, 63};
+        MySimpleMergeSort ms = new MySimpleMergeSort(arrTemple);
+        ms.mergeSort(0, arrTemple.length-1);
+        ms.displaySortedArray();
+
+
     }
 }
