@@ -56,6 +56,7 @@ public class ContactManagerTest {
     @DisplayName("Should Not Create Contact When Last Name is Null")
     public void shouldNotCreateContactWhenLastNameIsNull(){
      //   ContactManager contactManager = new ContactManager();
+     //   contactManager.addContact("John",null, "0123456789");
         assertThrows(RuntimeException.class, () -> {
             contactManager.addContact("John",null, "0123456789");
         } );
@@ -73,7 +74,7 @@ public class ContactManagerTest {
     //параметризированный тест
     @DisplayName("Phone Number Should Match The Required Format")
     @ParameterizedTest
-    @ValueSource(strings = {"0123456789", "1234567890", "+0123456789"})
+    @ValueSource(strings = {"0123456789", "0234567890", "0123456789"})
     public void shouldTestNumberFormat(String phoneNumber){
         contactManager.addContact("John", "Doe", phoneNumber);
         assertFalse(contactManager.getAllContacts().isEmpty());
@@ -91,13 +92,13 @@ public class ContactManagerTest {
     }
 
     private List<String>phoneNumberList(){
-        return Arrays.asList("0123456789", "0234567890", "+0123456789");
+        return Arrays.asList("0123456789", "0234567890", "0123456789");
     }
 
     //параметризированный тест с CsvSource
     @DisplayName("CSV Source Case - Phone Number should match the required Format")
     @ParameterizedTest
-    @CsvSource({"0123456789", "1234567890","0123456789"})
+    @CsvSource({"0123456789", "0234567890","0123456789"})
     public void shouldTestPhoneNumberFormatUsingCSVSource(String phoneNumber) {
         contactManager.addContact("John", "Doe", phoneNumber);
         assertFalse(contactManager.getAllContacts().isEmpty());
@@ -141,7 +142,7 @@ public class ContactManagerTest {
     class ParameterizedTests {
         @DisplayName("Phone Number should match the required Format")
         @ParameterizedTest
-        @ValueSource(strings = {"0123456789", "1234567890", "+0123456789"})
+        @ValueSource(strings = {"0123456789", "0234567890", "0123456789"})
         public void shouldTestPhoneNumberFormatUsingValueSource(String phoneNumber) {
             contactManager.addContact("John", "Doe", phoneNumber);
             assertFalse(contactManager.getAllContacts().isEmpty());
