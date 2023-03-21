@@ -53,7 +53,6 @@ public class ObjectFactory {
 
         t = wrapWithProxyIfNeeded(implClass, t);
 
-
         return t;
     }
 
