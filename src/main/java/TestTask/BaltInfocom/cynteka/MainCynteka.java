@@ -26,22 +26,30 @@ public class MainCynteka {
             int countList2 = Integer.parseInt( br.readLine());
             String line;
             String [] arrString;
+
+
             for (int i = 0; i < countList2; i++) {
                 line = br.readLine();
                 arrString = line.split(" ");
 
                 for (Map.Entry<String, String> me: mapString.entrySet() ) {
                     for (int j = 0; j < arrString.length; j++) {
+
                         if(me.getKey().contains(arrString[j])){
                                 me.setValue(line);
                                 break;
                         }
-                        if(j == arrString.length){
-                            stringToAdd.add(line);
-                        }
+//                        if(j == arrString.length){
+//                            stringToAdd.add(line);
+//                        }
                     }
                 }
+
+
+
             }
+
+
             for (int i = 0; i < stringToAdd.size(); i++) {
                 mapString.put(stringToAdd.get(i),"?");
             }
