@@ -65,5 +65,4 @@ public class MainCynteka2 {
         }
         return false;
     }
-
 }
