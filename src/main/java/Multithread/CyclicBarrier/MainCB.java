@@ -56,6 +56,7 @@ class TempThread implements Runnable{
         }
         try {
             cb.await();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (BrokenBarrierException e) {

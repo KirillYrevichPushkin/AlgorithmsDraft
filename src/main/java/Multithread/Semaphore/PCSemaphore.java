@@ -21,7 +21,6 @@ class Q {
     static Semaphore semCons = new Semaphore(0);
 
     int get() throws InterruptedException {
-
         semCons.acquire();
             Thread.sleep(100);
             System.out.println("get " + n);
