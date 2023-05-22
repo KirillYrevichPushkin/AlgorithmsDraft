@@ -40,7 +40,15 @@
         </dependency>
 
 
-<!--        <dependency>-->
+        <!-- https://mvnrepository.com/artifact/dnsjava/dnsjava -->
+        <dependency>
+            <groupId>dnsjava</groupId>
+            <artifactId>dnsjava</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+
+
+        <!--        <dependency>-->
 <!--            <groupId>log4j</groupId>-->
 <!--            <artifactId>log4j</artifactId>-->
 <!--            <version>1.2.17</version>-->
@@ -90,6 +98,12 @@
             <artifactId>junit-jupiter-params</artifactId>
             <version>5.9.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.10</version>
         </dependency>
 
         <dependency>
