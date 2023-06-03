@@ -4,9 +4,10 @@ public class StartSectorMain {
 
     public static void main(String[] args) {
 
-       // Sector sector = new Sector();
+        // Sector sector = new Sector();
 
-        float [][] arrSector;
+        float[][] arrSector;
+
 
         arrSector = Sector.getSectorByRadius(30.453688f, 59.899230f, 750);
 

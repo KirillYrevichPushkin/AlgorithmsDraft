@@ -1,7 +1,9 @@
 package Collections;
 
+import org.apache.logging.log4j.spi.CopyOnWrite;
+
 import java.util.*;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.*;
 
 public class MainCollections1 {
 
@@ -60,6 +62,7 @@ public class MainCollections1 {
       //  Deque deque2 = new LinkedList()
 
         deque.iterator().forEachRemaining(System.out::println);
+        //ConcurrentNavigableMap r = new ConcurrentSkipListMap()
 
 
 

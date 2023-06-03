@@ -33,21 +33,21 @@ public class MainUpdateDBDescription {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            descriptions = getDescriptions(rs.getString("link_site"));
-
-            System.out.println("descriptions1 = " + descriptions[0] + "\ndescriptions2 = " + descriptions[1]);
-
-            preparedStatement = connection.prepareStatement("UPDATE test.locations SET description = ?, full_description = ? where id = ?;");
-            preparedStatement.setInt(3, rs.getInt("id"));
-            preparedStatement.setString(1, descriptions[0]);
-            preparedStatement.setString(2,descriptions[1]);
-            preparedStatement.executeUpdate();
+//            descriptions = getDescriptions(rs.getString("link_site"));
+//
+//            System.out.println("descriptions1 = " + descriptions[0] + "\ndescriptions2 = " + descriptions[1]);
+//
+//            preparedStatement = connection.prepareStatement("UPDATE test.locations SET description = ?, full_description = ? where id = ?;");
+//            preparedStatement.setInt(3, rs.getInt("id"));
+//            preparedStatement.setString(1, descriptions[0]);
+//            preparedStatement.setString(2,descriptions[1]);
+//            preparedStatement.executeUpdate();
 
         }
 
 
 
-    } catch (SQLException | IOException e) {
+    } catch (Exception e) {
         e.printStackTrace();
     }finally {
         dbManager.disconnect();
