@@ -33,10 +33,8 @@ public class MyPhaser {
         phaser.arriveAndDeregister();
 
         if(phaser.isTerminated()){
-
             System.out.println("Синхронизатор фаз завершен");
         }
-
 
     }
 
