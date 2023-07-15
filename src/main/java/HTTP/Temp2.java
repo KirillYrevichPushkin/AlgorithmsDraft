@@ -8,6 +8,7 @@ public class Temp2 extends Temp{
         this.name = name;
     }
 
+
     public Temp2(String name) {
         this.name = name;
     }

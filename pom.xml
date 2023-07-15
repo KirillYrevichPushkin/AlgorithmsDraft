@@ -12,6 +12,7 @@
         <module>MySpring</module>
         <module>SpringFromZero</module>
         <module>SpringFromZero</module>
+        <module>SpringPotroshotel</module>
     </modules>
 
     <properties>

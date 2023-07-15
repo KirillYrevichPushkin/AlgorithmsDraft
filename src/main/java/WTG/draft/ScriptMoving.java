@@ -18,7 +18,6 @@ public class ScriptMoving {
         Connection connectionLocal;
         PreparedStatement psl;
         PreparedStatement psr;
-
         //подключение к удаленной БД
         DBManager dbManagerRemote = new DBManager("jdbc:postgresql://95.163.237.3:5432/wtg_db?currentSchema=public", "wtg", "wtg");
         Connection connectionRemote;
