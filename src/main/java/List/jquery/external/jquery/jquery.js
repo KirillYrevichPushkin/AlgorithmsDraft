@@ -3268,7 +3268,7 @@ jQuery.Callbacks = function( options ) {
 		// Actual callback list
 		list = [],
 
-		// Queue of execution data for repeatable lists
+		// Algorithm.Queue of execution data for repeatable lists
 		queue = [],
 
 		// Index of currently firing callback (modified by add/remove as needed)
@@ -6966,7 +6966,7 @@ Tween.propHooks = {
 
 			// Passing an empty string as a 3rd parameter to .css will automatically
 			// attempt a parseFloat and fallback to a string if the parse fails.
-			// Simple values such as "10px" are parsed to Float;
+			// Algorithm.Simple values such as "10px" are parsed to Float;
 			// complex values such as "rotate(1rad)" are returned as-is.
 			result = jQuery.css( tween.elem, tween.prop, "" );
 
@@ -7088,7 +7088,7 @@ function defaultPrefilter( elem, props, opts ) {
 		hidden = elem.nodeType && isHiddenWithinTree( elem ),
 		dataShow = dataPriv.get( elem, "fxshow" );
 
-	// Queue-skipping animations hijack the fx hooks
+	// Algorithm.Queue-skipping animations hijack the fx hooks
 	if ( !opts.queue ) {
 		hooks = jQuery._queueHooks( elem, "fx" );
 		if ( hooks.unqueued == null ) {

@@ -1,4 +1,4 @@
-package Simple;
+package Algorithm.Simple;
 
 import java.util.Arrays;
 

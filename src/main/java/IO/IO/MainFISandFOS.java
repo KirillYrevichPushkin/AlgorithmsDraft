@@ -18,7 +18,7 @@ public class MainFISandFOS {
         Path path1 = Paths.get("src/main/java/IO/IO/temp1.txt");
         Path path2 = Paths.get("src/main/java/IO/IO/temp2.txt");
 
-        File file3 = new File("src/main/java/Graph");
+        File file3 = new File("src/main/java/Algorithm.Graph");
         System.out.println(file3.isDirectory());
         String [] s = file3.list();
         for (String st : s ) {

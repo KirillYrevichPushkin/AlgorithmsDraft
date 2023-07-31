@@ -1,4 +1,4 @@
-package Tree;
+package Algorithm.Tree;
 
 public class Dog implements Comparable<Dog> {
     String name;

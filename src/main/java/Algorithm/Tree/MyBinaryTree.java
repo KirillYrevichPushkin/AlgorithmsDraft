@@ -1,7 +1,6 @@
-package Tree;
+package Algorithm.Tree;
 
 import java.util.Comparator;
-import java.util.TreeSet;
 
 public class MyBinaryTree<E> {
 

@@ -1,4 +1,4 @@
-package Tree;
+package Algorithm.Tree;
 
 import java.util.Comparator;
 

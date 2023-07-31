@@ -36,6 +36,8 @@ public class LinearProgrammingExample {
         //Метод setMaximization объявляет, что это проблема максимизации.
         objective.setMaximization();
 
+
+
         solver.solve();
         System.out.println("Solution:");
         System.out.println("Objective value = " + objective.value());

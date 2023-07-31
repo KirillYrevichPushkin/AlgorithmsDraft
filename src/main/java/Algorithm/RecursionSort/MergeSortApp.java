@@ -1,4 +1,4 @@
-package RecursionSort;
+package Algorithm.RecursionSort;
 
 class MergeSortApp
 {

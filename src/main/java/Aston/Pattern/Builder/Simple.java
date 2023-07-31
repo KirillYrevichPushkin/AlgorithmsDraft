@@ -43,7 +43,7 @@ public class Simple {
 
     @Override
     public String toString() {
-        return "Simple{" +
+        return "Algorithm.Simple{" +
                 "age=" + age +
                 ", name='" + name + '\'' +
                 ", friends=" + friends +

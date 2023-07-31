@@ -1,4 +1,4 @@
-package Queue;
+package Algorithm.Queue;
 
 public class MainQueue {
 

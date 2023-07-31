@@ -1,4 +1,4 @@
-package Graph;
+package Algorithm.Graph;
 
 public class MainGraph {
 

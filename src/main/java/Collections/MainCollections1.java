@@ -44,7 +44,7 @@ public class MainCollections1 {
         System.out.println(ns.ceiling(10));
 
         Queue e = new PriorityQueue();
-        //Stack
+        //Algorithm.Stack
         Deque<Integer> deque = new LinkedBlockingDeque<>(30);
 
         deque.add(1);

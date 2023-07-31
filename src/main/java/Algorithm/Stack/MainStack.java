@@ -1,4 +1,4 @@
-package Stack;
+package Algorithm.Stack;
 
 public class MainStack {
 
