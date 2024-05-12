@@ -19,7 +19,9 @@ public class Corellation {
     PearsonsCorrelation pc = new PearsonsCorrelation(dataMatrix);
     PearsonsCorrelation pcTemp = new PearsonsCorrelation();
     KendallsCorrelation kc = new KendallsCorrelation(dataMatrix);
+    KendallsCorrelation kcTemp = new KendallsCorrelation();
     SpearmansCorrelation sc = new SpearmansCorrelation(dataMatrix);
+    SpearmansCorrelation scTemp = new SpearmansCorrelation();
     RealMatrix correlationMatrix = pc.getCorrelationPValues();
 
     double[] price = getColumn(data, 9);
@@ -27,6 +29,12 @@ public class Corellation {
     double[] lstat = getColumn(data,8);
     double correlationRM = pcTemp.correlation(price, rm);
     double correlationLSTAT = pcTemp.correlation(price, lstat);
+
+    double[]t1 = {1,2,3,4,5,4,3};
+    double[]t2 = {2,1,0,-2,-3,-1,-2};
+    double correlationTp = pcTemp.correlation(t1, t2);
+    double correlationTk = kcTemp.correlation(t1, t2);
+    double correlationTs = scTemp.correlation(t1, t2);
 
     System.out.println(pc);
     System.out.println(correlationMatrix);
