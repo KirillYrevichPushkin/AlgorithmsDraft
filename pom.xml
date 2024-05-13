@@ -14,6 +14,7 @@
         <module>SpringFromZero</module>
         <module>SpringPotroshotel</module>
         <module>springCore</module>
+        <module>JMS-IBM-MQ</module>
     </modules>
 
     <properties>
