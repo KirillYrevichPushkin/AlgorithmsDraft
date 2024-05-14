@@ -1,0 +1,85 @@
+14 мая 2024 г., 14:41:01 MSK[main] com.ibm.msg.client.wmq.internal.WMQConnection
+Исключительная ситуация проигнорирована, поскольку обработчик исключительных ситуаций не зарегистрирован: '
+                     Сообщение : com.ibm.msg.client.jms.DetailedJMSException: JMSWMQ1107: Возникла ошибка соединения.
+Ошибка соединения IBM MQ JMS.
+Для определения причины ошибки обратитесь к связанной исключительной ситуации.
+                         Класс : class com.ibm.msg.client.jms.DetailedJMSException
+               Блокнот вкладок : com.ibm.msg.client.wmq.common.internal.Reason.reasonToException(Reason.java:595)
+                               : com.ibm.msg.client.wmq.common.internal.Reason.createException(Reason.java:215)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.checkJmqiCallSuccess(WMQMessageProducer.java:1257)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.checkJmqiCallSuccess(WMQMessageProducer.java:1220)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.access$800(WMQMessageProducer.java:75)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer$SpiUnidentifiedProducerShadow.sendInternal(WMQMessageProducer.java:1032)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer$ProducerShadow.send(WMQMessageProducer.java:548)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.send(WMQMessageProducer.java:1400)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.sendMessage(JmsMessageProducerImpl.java:855)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.synchronousSendInternal(JmsMessageProducerImpl.java:2055)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.sendInternal(JmsMessageProducerImpl.java:1993)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.send(JmsMessageProducerImpl.java:1535)
+                               : com.ibm.msg.client.jms.internal.JmsProducerImpl.send(JmsProducerImpl.java:624)
+                               : y88.kirill.jmsibmmq.IBMDEV.JmsPutGet.main(JmsPutGet.java:114)
+     Вызвано [1] --> Сообщение : com.ibm.mq.MQException: JMSCMQ0001: Не удалось выполнить вызов IBM MQ; код завершения '2' ('MQCC_FAILED'), причина '2009' ('MQRC_CONNECTION_BROKEN').
+                         Класс : class com.ibm.mq.MQException
+               Блокнот вкладок : com.ibm.msg.client.wmq.common.internal.Reason.createException(Reason.java:203)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.checkJmqiCallSuccess(WMQMessageProducer.java:1257)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.checkJmqiCallSuccess(WMQMessageProducer.java:1220)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.access$800(WMQMessageProducer.java:75)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer$SpiUnidentifiedProducerShadow.sendInternal(WMQMessageProducer.java:1032)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer$ProducerShadow.send(WMQMessageProducer.java:548)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.send(WMQMessageProducer.java:1400)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.sendMessage(JmsMessageProducerImpl.java:855)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.synchronousSendInternal(JmsMessageProducerImpl.java:2055)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.sendInternal(JmsMessageProducerImpl.java:1993)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.send(JmsMessageProducerImpl.java:1535)
+                               : com.ibm.msg.client.jms.internal.JmsProducerImpl.send(JmsProducerImpl.java:624)
+                               : y88.kirill.jmsibmmq.IBMDEV.JmsPutGet.main(JmsPutGet.java:114)
+     Вызвано [2] --> Сообщение : com.ibm.mq.jmqi.JmqiException: CC=2;RC=2009
+                         Класс : class com.ibm.mq.jmqi.JmqiException
+               Блокнот вкладок : com.ibm.mq.jmqi.remote.impl.RemoteSession.getConnection(RemoteSession.java:498)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteSession.isDistListCapable(RemoteSession.java:1871)
+                               : com.ibm.mq.jmqi.remote.api.RemoteFAP.MQOPEN(RemoteFAP.java:3285)
+                               : com.ibm.mq.jmqi.remote.api.RemoteFAP.MQOPEN(RemoteFAP.java:3157)
+                               : com.ibm.mq.ese.service.PolicyServiceImpl.openPolicyQueue(PolicyServiceImpl.java:505)
+                               : com.ibm.mq.ese.service.PolicyServiceImpl.getPolicy(PolicyServiceImpl.java:204)
+                               : com.ibm.mq.ese.intercept.JmqiOpenInterceptorImpl.determinePolicy(JmqiOpenInterceptorImpl.java:705)
+                               : com.ibm.mq.ese.intercept.JmqiOpenInterceptorImpl.afterOpen(JmqiOpenInterceptorImpl.java:609)
+                               : com.ibm.mq.ese.intercept.JmqiOpenInterceptorImpl.afterMQOPEN(JmqiOpenInterceptorImpl.java:165)
+                               : com.ibm.mq.ese.jmqi.InterceptedJmqiImpl.doPut1(InterceptedJmqiImpl.java:1061)
+                               : com.ibm.mq.ese.jmqi.InterceptedJmqiImpl.jmqiPut1(InterceptedJmqiImpl.java:974)
+                               : com.ibm.mq.ese.jmqi.ESEJMQI.jmqiPut1(ESEJMQI.java:672)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer$SpiUnidentifiedProducerShadow.sendInternal(WMQMessageProducer.java:1010)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer$ProducerShadow.send(WMQMessageProducer.java:548)
+                               : com.ibm.msg.client.wmq.internal.WMQMessageProducer.send(WMQMessageProducer.java:1400)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.sendMessage(JmsMessageProducerImpl.java:855)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.synchronousSendInternal(JmsMessageProducerImpl.java:2055)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.sendInternal(JmsMessageProducerImpl.java:1993)
+                               : com.ibm.msg.client.jms.internal.JmsMessageProducerImpl.send(JmsMessageProducerImpl.java:1535)
+                               : com.ibm.msg.client.jms.internal.JmsProducerImpl.send(JmsProducerImpl.java:624)
+                               : y88.kirill.jmsibmmq.IBMDEV.JmsPutGet.main(JmsPutGet.java:114)
+     Вызвано [3] --> Сообщение : com.ibm.mq.jmqi.JmqiException: CC=2;RC=2009
+                         Класс : class com.ibm.mq.jmqi.JmqiException
+               Блокнот вкладок : com.ibm.mq.jmqi.remote.impl.RemoteConnection.asyncConnectionBroken(RemoteConnection.java:3663)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteRcvThread.run(RemoteRcvThread.java:547)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1227)
+     Вызвано [4] --> Сообщение : com.ibm.mq.jmqi.JmqiException: CC=2;RC=2009;AMQ9208: Ошибка при приеме данных от хоста 'localhost/127.0.0.1:1414 (localhost)'. [1=-1,2=ffffffff,3=localhost/127.0.0.1:1414 (localhost),4=TCP]
+                         Класс : class com.ibm.mq.jmqi.JmqiException
+               Блокнот вкладок : com.ibm.mq.jmqi.remote.impl.RemoteRcvThread.receiveBuffer(RemoteRcvThread.java:758)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteRcvThread.receiveOneTSH(RemoteRcvThread.java:699)
+                               : com.ibm.mq.jmqi.remote.impl.RemoteRcvThread.run(RemoteRcvThread.java:139)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.runTask(WorkQueueItem.java:319)
+                               : com.ibm.msg.client.commonservices.workqueue.SimpleWorkQueueItem.runItem(SimpleWorkQueueItem.java:99)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueItem.run(WorkQueueItem.java:343)
+                               : com.ibm.msg.client.commonservices.workqueue.WorkQueueManager.runWorkQueueItem(WorkQueueManager.java:312)
+                               : com.ibm.msg.client.commonservices.j2se.workqueue.WorkQueueManagerImplementation$ThreadPoolWorker.run(WorkQueueManagerImplementation.java:1227)
+'.
+
+Объяснение:
+Произведена попытка доставить исключительную ситуацию в обработчик исключительных ситуаций соединений, но обработчик не зарегистрирован.
+
+Действие:
+Необходимо зарегистрировать обработчик исключений в соединении для получения его исключительных ситуаций.
+--------------------------------------------------------------------

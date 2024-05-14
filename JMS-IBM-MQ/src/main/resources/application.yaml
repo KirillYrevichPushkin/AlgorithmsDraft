@@ -7,13 +7,7 @@ ibm:
     servers:
       - queueManager: QM1
         channel: DEV.ADMIN.SVRCONN
-        connName: ibmmq.ru(1414)
+        connName: localhost(1414)
         user: admin
         password: passw0rd
-      - queueManager: QM2
-        channel: DEV.ADMIN.SVRCONN
-        connName: ibmmq.ru(1415)
-        user: admin
-        password: passw0rd
-    queue1: QUEUE1
-    queue2: QUEUE2
+

@@ -17,6 +17,12 @@ package y88.kirill.jmsibmmq.IBMDEV;
  */
 
 
+//import com.ibm.msg.client.jakarta.jms.JmsConnectionFactory;
+//import com.ibm.msg.client.jakarta.jms.JmsFactoryFactory;
+//import com.ibm.msg.client.jakarta.wmq.WMQConstants;
+import com.ibm.msg.client.jms.JmsConnectionFactory;
+import com.ibm.msg.client.jms.JmsFactoryFactory;
+import com.ibm.msg.client.wmq.WMQConstants;
 import java.io.Console;
 import javax.jms.Destination;
 import javax.jms.JMSConsumer;
@@ -105,6 +111,7 @@ public class JmsPutGet {
 
       // Create JMS objects
       context = cf.createContext();
+      //cf.getC
       destination = context.createQueue("queue:///" + QUEUE_NAME);
 
       long uniqueNumber = System.currentTimeMillis() % 1000;
