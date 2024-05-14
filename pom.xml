@@ -15,6 +15,7 @@
         <module>SpringPotroshotel</module>
         <module>springCore</module>
         <module>JMS-IBM-MQ</module>
+        <module>JMS-IBM-MQ-2</module>
     </modules>
 
     <properties>
