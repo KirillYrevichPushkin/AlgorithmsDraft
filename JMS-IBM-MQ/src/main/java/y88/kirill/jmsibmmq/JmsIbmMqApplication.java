@@ -5,30 +5,44 @@ import com.ibm.msg.client.jms.JmsConnectionFactory;
 import com.ibm.msg.client.jms.JmsFactoryFactory;
 import com.ibm.msg.client.wmq.WMQConstants;
 import com.ibm.msg.client.wmq.common.CommonConstants;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.annotation.JmsListenerConfigurer;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.config.JmsListenerEndpointRegistry;
+import org.springframework.jms.config.SimpleJmsListenerEndpoint;
+import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 import org.springframework.jms.listener.MessageListenerContainer;
+import org.springframework.jms.support.QosSettings;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
 import org.springframework.scheduling.annotation.EnableAsync;
+import static javax.jms.DeliveryMode.NON_PERSISTENT;
+import static javax.jms.Session.CLIENT_ACKNOWLEDGE;
 
 @SpringBootApplication
 @EnableJms
 @EnableAsync
 public class JmsIbmMqApplication {
+
+	@Autowired
+	private JmsListenerEndpointRegistry registry;
 
 
 //	@Bean
@@ -51,7 +65,7 @@ public class JmsIbmMqApplication {
 
 	public static void main(String[] args) {
 		// Launch the application
-//		ConfigurableApplicationContext context = SpringApplication.run(JmsIbmMqApplication.class, args);
+
 		SpringApplication.run(JmsIbmMqApplication.class, args);
 //
 //		JmsTemplate jmsTemplate = context.getBean(JmsTemplate.class);
@@ -68,44 +82,49 @@ public class JmsIbmMqApplication {
 //		factory.setConnectionFactory(jmsConnectionFactory());
 //		return factory;
 //	}
+//
+//	@Bean
+//	public JmsTemplate jmsTemplate() {
+//		return new JmsTemplate(jmsConnectionFactory());
+//	}
+//
+//	@Bean
+//	public JmsConnectionFactory jmsConnectionFactory() {
+//		JmsFactoryFactory ff;
+//		JmsConnectionFactory cf = null;
+//		try {
+//			ff= JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
+//			cf = ff.createConnectionFactory();
+//			cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, "localhost");
+//			cf.setIntProperty(WMQConstants.WMQ_PORT, 1414);
+//			cf.setStringProperty(WMQConstants.WMQ_CHANNEL, "DEV.ADMIN.SVRCONN");
+//
+//			cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT);
+//			cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, "QM1");
+//			cf.setStringProperty(WMQConstants.WMQ_APPLICATIONNAME, "JmsPutGet (JMS)");
+//			cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
+//			cf.setStringProperty(WMQConstants.USERID, "admin");
+//			cf.setStringProperty(WMQConstants.PASSWORD, "passw0rd");
+//
+//		} catch (JMSException e) {
+//			e.printStackTrace();
+//			JmsListenerConfigurer t;
+//		}
+//		return cf;
+//	}
+//
+//	@Bean
+//	public MessageListenerContainer listenerContainer() {
+//		DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
+//		container.setConnectionFactory(jmsConnectionFactory());
+//		container.setDestinationName("DEV.QUEUE.1");
+//		container.setMessageListener(new SampleListener());
+//		return container;
+//	}
 
-	@Bean
-	public JmsTemplate jmsTemplate() {
-		return new JmsTemplate(jmsConnectionFactory());
-	}
 
-	@Bean
-	public JmsConnectionFactory jmsConnectionFactory() {
-		JmsFactoryFactory ff;
-		JmsConnectionFactory cf = null;
-		try {
-			ff= JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER);
-			cf = ff.createConnectionFactory();
-			cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, "localhost");
-			cf.setIntProperty(WMQConstants.WMQ_PORT, 1414);
-			cf.setStringProperty(WMQConstants.WMQ_CHANNEL, "DEV.ADMIN.SVRCONN");
 
-			cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT);
-			cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, "QM1");
-			cf.setStringProperty(WMQConstants.WMQ_APPLICATIONNAME, "JmsPutGet (JMS)");
-			cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
-			cf.setStringProperty(WMQConstants.USERID, "admin");
-			cf.setStringProperty(WMQConstants.PASSWORD, "passw0rd");
 
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
-		return cf;
-	}
-
-	@Bean
-	public MessageListenerContainer listenerContainer() {
-		DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
-		container.setConnectionFactory(jmsConnectionFactory());
-		container.setDestinationName("DEV.QUEUE.1");
-		container.setMessageListener(new SampleListener());
-		return container;
-	}
 
 
 }
