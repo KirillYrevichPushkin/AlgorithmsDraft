@@ -7,6 +7,7 @@ import org.springframework.jms.JmsException;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,10 +24,10 @@ public class ControllerJMS {
   }
 
   @GetMapping("send1")
-  String send1(){
+  String send1(@RequestParam String msg){
     try{
-      jmsTemplate.convertAndSend("DEV.QUEUE.1", "Hello World!");
-      return "OK";
+      jmsTemplate.convertAndSend("DEV.QUEUE.1", "Q1 " +  msg);
+      return "send " + msg;
     }catch(JmsException ex){
       ex.printStackTrace();
       return "FAIL";
@@ -34,10 +35,10 @@ public class ControllerJMS {
   }
 
   @GetMapping("send2")
-  String send2(){
+  String send2(@RequestParam String msg){
     try{
-      jmsTemplate.convertAndSend("DEV.QUEUE.2", "Hello World!");
-      return "OK";
+      jmsTemplate.convertAndSend("DEV.QUEUE.2", "Q2 " +  msg);
+      return "send " + msg;
     }catch(JmsException ex){
       ex.printStackTrace();
       return "FAIL";
@@ -48,16 +49,16 @@ public class ControllerJMS {
   @GetMapping("recv2")
   String recv2(){
     try{
-      return jmsTemplate.receiveAndConvert("DEV.QUEUE.2").toString();
+      return "From Q2 " +  jmsTemplate.receiveAndConvert("DEV.QUEUE.2").toString();
     }catch(JmsException ex){
       ex.printStackTrace();
       return "FAIL";
     }
   }
 
-  @JmsListener(id = "app", destination = "DEV.QUEUE.1")
+  //@JmsListener(id = "app", destination = "DEV.QUEUE.1")
   public void listener(String message){
-    System.out.println("listener " + message);
+    System.out.println("listener From Q1  " + message);
   }
 
 }
