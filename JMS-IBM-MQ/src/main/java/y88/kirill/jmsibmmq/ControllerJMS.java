@@ -7,6 +7,7 @@ import org.springframework.jms.JmsException;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,9 +25,9 @@ public class ControllerJMS {
   }
 
   @GetMapping("send1")
-  String send1(@RequestParam String msg){
+  String send1(@RequestParam String msg, @RequestBody String json){
     try{
-      jmsTemplate.convertAndSend("DEV.QUEUE.1", "Q1 " +  msg);
+      jmsTemplate.convertAndSend("DEV.QUEUE.1", json);
       return "send " + msg;
     }catch(JmsException ex){
       ex.printStackTrace();
